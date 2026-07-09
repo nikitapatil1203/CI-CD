@@ -3,7 +3,6 @@ pipeline{
   stages{
     stage (git clone){
         echo "testing this pipeline"
-        git clone "https://github.com/nikitapatil1203/dummy.git"
       
     }
   }
