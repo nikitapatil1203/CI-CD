@@ -1,7 +1,7 @@
 pipeline{
   agent any
   stages{
-    stage (git clone){
+    stage(git clone){
         echo "testing this pipeline"
       
     }
