@@ -1,5 +1,9 @@
 pipeline {
   agent any 
+  tools {
+        maven 'MAVEN_HOME'  // This must exactly match the Name you gave it in Global Tools
+        jdk 'JAVA_HOME'     // This must exactly match your JDK Name in Global Tools
+    }
     stages {
       stage(build) {
         steps {
