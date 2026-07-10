@@ -3,7 +3,7 @@ pipeline {
     stages {
       stage(build) {
         steps {
-          sh 'maven -version'
+          sh 'mvn -version'
           sh 'java -version'
           sh 'cd spring-boot-app && mvn clean compile && mvn clean package'
         }
