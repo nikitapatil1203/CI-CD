@@ -3,6 +3,7 @@ pipeline {
     stages {
       stage('Checkout') {
         steps {
+          sh 'echo passed'
           sh 'git branch: 'main', url: 'https://github.com/nikitapatil1203/CI-CD''
         }
       }
