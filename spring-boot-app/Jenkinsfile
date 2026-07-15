@@ -3,7 +3,7 @@ pipeline {
     stages {
       stage('Checkout') {
         steps {
-          sh 'echo passed'
+          sh 'git branch: 'main', url: 'https://github.com/nikitapatil1203/CI-CD''
         }
       }
       stage('Build and Test') {
@@ -13,7 +13,9 @@ pipeline {
       }
       stage('Static Code Analysis') {
         steps {
-          sh 'echo passed'
+          withSonarQubeEnv(credentialsId: 'sonarqube') {
+             sh 'mvn sonar:sonar && -Dsonar.url=http://44.210.99.200:9000/ && -Dsonar.login=sqa_4fccb5944aa0455e3cd83152185e07e5c199972c'
+           }
         }
       }
 
