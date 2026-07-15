@@ -13,8 +13,8 @@ sudo adduser sonarqube
 sudo su - sonarqube
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.1.88267.zip
 unzip *
-exit ( logout from sonarqube user)
-mv /home/sonarqube/sonarqube-10.4.1.88267 /opt/sonarqube   (** run this as a root user)
+exit                                                            (## logout from sonarqube user)
+mv /home/sonarqube/sonarqube-10.4.1.88267 /opt/sonarqube       (## run this as a root user)
 sudo su - sonarqube
 chown -R sonarqube:sonarqube /opt/sonarqube
 chmod -R 775 /opt/sonarqube
