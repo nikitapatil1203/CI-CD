@@ -1,6 +1,4 @@
 ### Configure a Sonar Server locally
-
-
 System Requirements
 Java 17+ (Oracle JDK, OpenJDK, or AdoptOpenJDK)
 Hardware Recommendations:
