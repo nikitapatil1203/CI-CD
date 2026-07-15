@@ -13,9 +13,9 @@ pipeline {
       }
       stage('Static Code Analysis') {
         steps {
-          withSonarQubeEnv(credentialsId: 'sonarqube') {
-             sh 'mvn sonar:sonar && -Dsonar.url=http://44.210.99.200:9000/ && -Dsonar.login=sqa_4fccb5944aa0455e3cd83152185e07e5c199972c'
-           }
+          withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+          sh 'cd spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        }
         }
       }
 
