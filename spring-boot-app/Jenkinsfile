@@ -1,5 +1,10 @@
 pipeline {
   agent any 
+    environment {
+        DOCKER_IMAGE = "nikitapatil1203/ci-cd:${BUILD_NUMBER}"
+        SONAR_URL = "http://**.***.**.***:9000/"
+        TRIVY_CACHE_DIR = "${WORKSPACE}/.trivy_cache"
+        }
     stages {
       stage('Checkout') {
         steps {
@@ -13,9 +18,6 @@ pipeline {
         }
       }      
   //    stage('Static Code Analysis') {
-   //      environment {
-    //     SONAR_URL = "http://**.***.**.***:9000/"
-    //    }
     //    steps {
     //      withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
     //      sh 'cd spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
@@ -23,9 +25,6 @@ pipeline {
     //    }
     //  }
       stage('Build Image'){
-        environment {
-        DOCKER_IMAGE = "nikitapatil1203/ci-cd:${BUILD_NUMBER}"
-        }
         steps{
           sh 'cd spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
           sh 'docker images'
@@ -33,17 +32,7 @@ pipeline {
       }
       stage('Trivy Docker image Scan') {
         steps {
-          sh "mkdir -p ${TRIVY_CACHE_DIR} reports"
-
-                dir("${APP_DIR}") {
-
-                    sh """
-                    trivy image \
-                      --cache-dir ${TRIVY_CACHE_DIR} \
-                      --format json \
-                      --output ${WORKSPACE}/reports/trivy-image.json \
-                      ${IMAGE_NAME}
-                    """
+         sh 'trivy image --cache-dir ${TRIVY_CACHE_DIR} ${DOCKER_IMAGE}'
         }
       }
 
