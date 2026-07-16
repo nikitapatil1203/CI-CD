@@ -30,19 +30,19 @@ pipeline {
           sh 'docker images'
         }
       }
-     stage('Trivy Docker image Scan') {
-    steps {
-        sh '''
-        trivy image \
-        --timeout 20m \
-        --scanners vuln \
-        --severity HIGH,CRITICAL \
-        --skip-version-check \
-        --cache-dir ${TRIVY_CACHE_DIR} \
-        ${DOCKER_IMAGE}
-        '''
-    }
-}
+      stage('Trivy Docker image Scan') {
+         steps {
+          sh '''
+            trivy image \
+            --timeout 20m \
+            --scanners vuln \
+            --severity HIGH,CRITICAL \
+            --skip-version-check \
+            --cache-dir ${TRIVY_CACHE_DIR} \
+            ${DOCKER_IMAGE}
+            '''
+            }
+        }
 
 
 
