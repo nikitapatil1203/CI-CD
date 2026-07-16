@@ -36,13 +36,13 @@ pipeline {
         trivy image \
         --timeout 20m \
         --scanners vuln \
+        --severity HIGH,CRITICAL \
         --skip-version-check \
         --cache-dir ${TRIVY_CACHE_DIR} \
         ${DOCKER_IMAGE}
         '''
     }
 }
-
 
 
 
