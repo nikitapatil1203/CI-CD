@@ -24,7 +24,8 @@ pipeline {
       }
       stage('Build Image'){
         steps{
-          sh ''
+          sh 'docker build -t nikitapatil:latest .'
+          sh 'docker images'
         }
       }
 
