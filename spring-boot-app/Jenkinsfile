@@ -48,7 +48,13 @@ pipeline {
       stage('Push Docker Image To ECR') {
         steps {
           // Refer to AWS ECR for the commands
-      sh 'aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com && docker push ${DOCKER_IMAGE}'
+ 
+sh '''
+aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+docker tag ${DOCKER_IMAGE} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/nikita/ci-cd-repo:latest
+ docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/nikita/ci-cd-repo:latest
+'''
+
           
         }
       }
