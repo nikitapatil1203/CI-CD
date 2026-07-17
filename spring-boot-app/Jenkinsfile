@@ -45,7 +45,7 @@ pipeline {
       }
       stage('Push Docker Image') {
         steps {
-        
+          sh 'aws s3 ls'
           
         }
       }
