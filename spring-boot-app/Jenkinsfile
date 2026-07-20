@@ -6,6 +6,8 @@ pipeline {
            TRIVY_CACHE_DIR = "${WORKSPACE}/.trivy_cache"
            AWS_REGION = "us-east-1"
            AWS_ACCOUNT_ID = credentials('aws-account-id')
+           GIT_REPO_NAME = "CI-CD"
+           GIT_USER_NAME = "nikitapatil1203"
         }
     stages {
       stage('Checkout') {
@@ -57,7 +59,9 @@ pipeline {
       }
       stage('Update Deployment File') {
         steps {
-          sh 'echo passed'
+            sh '''
+            sed -i "s|image: nikitapatil/python-web-app:.*|image: nikitapatil/python-web-app:${BUILD_NUMBER}|g" deployment.yaml
+            '''
         }
       }
 
