@@ -66,6 +66,9 @@ pipeline {
             pwd
             sed -i.bak "s|image: nikitapatil1203/ci-cd:.*|image: nikitapatil1203/ci-cd:${BUILD_NUMBER}|g" deployment.yml
             docker images
+            git add .
+            git commit -m "updated deployment.yml file"
+            git push -u origin main
             '''
         }
       }
