@@ -66,7 +66,7 @@ pipeline {
 
             git config user.email "nikita121212patil@gmail.com"
             git config user.name "Nikita Patil"
-            
+            pwd
             sed -i.bak "s|image: nikitapatil1203/ci-cd:.*|image: nikitapatil1203/ci-cd:${BUILD_NUMBER}|g" deployment.yml
             docker images
             git remote -v
