@@ -8,6 +8,7 @@ pipeline {
            AWS_ACCOUNT_ID = credentials('aws-account-id')
            GIT_REPO_NAME = "CI-CD"
            GIT_USER_NAME = "nikitapatil1203"
+           USER_EMAIL = credentials('user-email-id')
         }
     stages {
       stage('Checkout') {
@@ -64,7 +65,7 @@ pipeline {
             docker pull ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/nikita/ci-cd-repo:${BUILD_NUMBER}
             docker tag  ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/nikita/ci-cd-repo:${BUILD_NUMBER} ${DOCKER_IMAGE}
 
-            git config user.email "nikita121212patil@gmail.com"
+            git config user.email "${USER_EMAIL}"
             git config user.name "Nikita Patil"
 
             cd spring-boot-app-manifests
