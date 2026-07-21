@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: spring-boot-app
-        image: nikitapatil1203/ci-cd:45
+        image: nikitapatil1203/ci-cd:46
         ports:
         - containerPort: 8080
